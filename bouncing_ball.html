@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>最简单的 Canvas 动画</title>
+    <style>
+        body { 
+            text-align: center; 
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        canvas {
+            border: 2px solid #333;
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>多彩小球动画：10-100个随机颜色小球</h1>
+    <canvas id="animationCanvas" width="500" height="350"></canvas>
+
+    <script>
+        // 获取 canvas 元素和它的 2D 绘图上下文
+        const canvas = document.getElementById('animationCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- 1. 生成随机颜色函数 ---
+        function getRandomColor() {
+            const colors = [
+                '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
+                '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9',
+                '#F8C471', '#82E0AA', '#F1948A', '#85C1E9', '#D7BDE2',
+                '#F9E79F', '#ABEBC6', '#FAD7A0', '#D5A6BD', '#A9CCE3'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // --- 2. 生成随机小球函数 ---
+        function createRandomBall() {
+            return {
+                x: Math.random() * (canvas.width - 40) + 20,  // 随机 x 坐标
+                y: Math.random() * (canvas.height - 40) + 20, // 随机 y 坐标
+                radius: Math.random() * 15 + 10,               // 随机半径 10-25
+                dx: (Math.random() - 0.5) * 8,                // 随机 x 速度
+                dy: (Math.random() - 0.5) * 8,                // 随机 y 速度
+                color: getRandomColor()                        // 随机颜色
+            };
+        }
+
+        // --- 3. 初始化多个小球 ---
+        const ballCount = Math.floor(Math.random() * 91) + 10; // 10-100个球
+        let balls = [];
+        
+        for (let i = 0; i < ballCount; i++) {
+            balls.push(createRandomBall());
+        }
+
+        // --- 4. 定义绘制单个小球的函数 ---
+        function drawBall(ball) {
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fillStyle = ball.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        // --- 5. 定义动画的核心函数：更新与重绘 ---
+        function animate() {
+            // a. 清除上一帧的画面
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // b. 更新和绘制所有小球
+            balls.forEach(ball => {
+                // 绘制小球
+                drawBall(ball);
+                
+                // 更新小球的位置
+                ball.x += ball.dx;
+                ball.y += ball.dy;
+
+                // 碰撞检测：检查小球是否碰到左右边界
+                if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+                    ball.dx = -ball.dx; // 速度反向
+                }
+
+                // 碰撞检测：检查小球是否碰到上下边界
+                if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+                    ball.dy = -ball.dy; // 速度反向
+                }
+            });
+
+            // c. 请求浏览器在下一次重绘之前调用 animate 函数，形成循环
+            requestAnimationFrame(animate);
+        }
+
+        // --- 4. 启动动画 ---
+        animate();
+
+    </script>
+
+</body>
+</html> 
