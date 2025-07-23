@@ -10,17 +10,98 @@
 </head>
 <body>
     <h1>POST UR COMMENTS</h1>
-    <h2>submit comment</h2>
+
+    <h2>submit comment (POST)</h2>
     <div class="form-container">
-        <form action="" method="GET">
+        <form action="" method="POST">
             <input type="text" placeholder="name">
             <input type="email" placeholder="email">
             <input type="text" placeholder="city">
             <input type="text" placeholder="address">
             <textarea placeholder="Enter comments" rows="4"></textarea>
 
+            <!-- Username and Password fields -->
+            <input type="text" name="username" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+
+            <!-- Checkboxes group -->
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="interests" value="reading"> Reading</label>
+                <label><input type="checkbox" name="interests" value="gaming"> Gaming</label>
+                <label><input type="checkbox" name="interests" value="sports"> Sports</label>
+                <label><input type="checkbox" name="interests" value="music"> Music</label>
+            </div>
+
+            <!-- Radio buttons group -->
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="male"> Male</label>
+                <label><input type="radio" name="gender" value="female"> Female</label>
+                <label><input type="radio" name="gender" value="other"> Other</label>
+                <label><input type="radio" name="gender" value="prefer-not"> Prefer not to say</label>
+            </div>
+
             <input type="submit" value="submit comment">
         </form>
+    </div>
+
+    
+    <h3>My Favorite Bands and Songs</h3>
+    <div class="song-container">
+
+        <table class="music-table">
+            <thead>
+                <tr>
+                    <th>Band 1</th>
+                    <th>Band 2</th>
+                    <th>Band 3</th>
+                    <th>Band 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="https://www.youtube.com" target="_blank">Song 1</a></td>
+                    <td><a href="https://www.youtube.com" target="_blank">Song 1</a></td>
+                    <td><a href="https://www.youtube.com" target="_blank">Song 1</a></td>
+                    <td><a href="https://www.youtube.com" target="_blank">Song 1</a></td>
+                </tr>
+                <tr>
+                    <td>Song 2</td>
+                    <td>Song 2</td>
+                    <td>Song 2</td>
+                    <td>Song 2</td>
+                </tr>
+                <tr>
+                    <td>Song 3</td>
+                    <td>Song 3</td>
+                    <td>Song 3</td>
+                    <td>Song 3</td>
+                </tr>
+                <tr>
+                    <td>Song 4</td>
+                    <td>Song 4</td>
+                    <td>Song 4</td>
+                    <td>Song 4</td>
+                </tr>
+                <tr>
+                    <td>Song 5</td>
+                    <td>Song 5</td>
+                    <td>Song 5</td>
+                    <td>Song 5</td>
+                </tr>
+                <tr>
+                    <td>Song 6</td>
+                    <td>Song 6</td>
+                    <td>Song 6</td>
+                    <td>Song 6</td>
+                </tr>
+                <tr>
+                    <td>Song 7</td>
+                    <td>Song 7</td>
+                    <td>Song 7</td>
+                    <td>Song 7</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 
